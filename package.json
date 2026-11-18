@@ -1,0 +1,14 @@
+{
+  "name": "tiktok-misket-yarisi",
+  "version": "1.0.0",
+  "description": "TikTok Canli Yayin Otomatik 2D Misket & Plinko Yarisi (3 Etap + Hediye Boost + Jeton Takibi)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5",
+    "tiktok-live-connector": "^2.5.0"
+  }
+}

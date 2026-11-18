@@ -1,0 +1,47 @@
+====================================================================
+🏆 TİKTOK CANLI YAYIN - 5 BÜYÜK TAKIM MİSKET YARIŞI KILAVUZU
+Takımlar: Fenerbahçe, Galatasaray, Beşiktaş, Trabzonspor, Amedspor
+====================================================================
+
+Bu klasör, orijinal "marble race" projeniz bozulmadan YENİ BİR PROJE olarak
+oluşturulmuştur.
+
+1. OYUN NASIL BAŞLATILIR?
+--------------------------------------------------------------------
+- Klasördeki "BASLAT_TIKTOK_STUDIO.bat" dosyasına çift tıklayın.
+- TikTok LIVE Studio için güvenli HTTPS linki otomatik panonuza kopyalanır.
+- Tarayıcınızda kontrol paneli açılır.
+
+2. TİKTOK LIVE STUDIO'YA EKLEME
+--------------------------------------------------------------------
+- TikTok LIVE Studio'da "Kaynak Ekle" -> "Bağlantı" (Link) seçin.
+- Panonuza kopyalanan adresi yapıştırın (Ctrl + V).
+- Özel Çözünürlük: Genişlik: 1080, Yükseklik: 1920 (Cam gibi Full HD).
+- "Ekrana Sığdır" simgesine basarak tam ekran yapın.
+
+3. OYUN KURALLARI & HEDİYE KAPİŞMASI
+--------------------------------------------------------------------
+- Pistte sadece 5 BÜYÜK TAKIM MİSKETİ yarışır (FB, GS, BJK, TS, AMEDSPOR).
+- İzleyiciler sohbete FB, GS, BJK, TS veya AMED yazdıklarında tuttukları takım
+  sisteme kaydedilir.
+- 30 Jetonluk Hediyeler (Donut, Panda vb.):
+  Tuttuğu takıma "ENGELSİZ TURBO BOOST" verir! Misket alev saçarak engellerin
+  içinden roket gibi geçer.
+- 100 Jetonluk Hediye (El Kalbi vb.):
+  O an 1. sırada lider giden rakip takımı ANINDA 1 SANİYE DONDURUR! (Buz Küpü).
+- 1 Jetonluk Hediyeler & Yorumlar:
+  Takıma küçük hız ivmeleri kazandırır.
+
+4. ŞAMPİYONLUK MARŞLARI NASIL ÇALAR?
+--------------------------------------------------------------------
+- Hangi takım finişi 1. geçerse o turun şampiyonu olur ve kupayı kaldırır.
+- Oyun otomatik olarak kazanan takımın zafer marşını çalar!
+- Kendi sevdiğiniz özel MP3 marşlarını kullanmak isterseniz:
+  "public/audio" klasörüne şu isimlerle MP3 atabilirsiniz:
+    * fb.mp3   (Fenerbahçe Marşı)
+    * gs.mp3   (Galatasaray Marşı)
+    * bjk.mp3  (Beşiktaş Marşı)
+    * ts.mp3   (Trabzonspor Marşı / Kolbastı)
+    * amed.mp3 (Amedspor Marşı)
+  (Eğer MP3 koymazsanız oyun yerleşik stadyum melodisini sentezleyerek çalar).
+====================================================================

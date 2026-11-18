@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>TikTok Canlı Misket Yarışı - 5 Büyük Takım Kapışması</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=teams-pro-5" />
+</head>
+<body>
+  <div id="app-wrapper">
+    <!-- 9:16 Dikey Canlı Yayın Sahnesi -->
+    <div id="stream-stage">
+      <!-- Oyun Canvas'ı (Yüksek çözünürlük 720x1280) -->
+      <canvas id="raceCanvas" width="720" height="1280"></canvas>
+
+      <!-- Sol Üst: Canlı Etap Rozeti, Kamera Bilgisi & Yorum Kapatmayan Bilgilendirme Kutusu -->
+      <div class="hud-top-left">
+        <div class="stage-pill" id="stagePill">
+          <span class="live-dot"></span>
+          <span id="stageTitleText">HAZIRLIK • 14 SN</span>
+        </div>
+        <div class="camera-pill" id="leaderSubText">
+          🎥 Canlı Takip: Açık
+        </div>
+        <div class="join-call-box">
+          <div class="join-call-text">
+            <strong>📢 YORUMA TAKIMINI YAZ!</strong>
+            <span class="join-teams-sub">FB • GS • BJK • TS • AMED</span>
+            <span id="joinRuleHint">❤️ 1000 Beğeni = Takıma Boost<br/>🍩 30 Jeton = Engelsiz Turbo<br/>❄️ 100 Jeton = 1.'yi 2 Sn Dondur</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sağ Üst: Anlık Sıralama & Beğeni Yarışı (Yan Yana, Ortalanmış) -->
+      <div class="hud-top-right">
+        <!-- Takım Yarış Sıralaması -->
+        <div class="leaderboard-box">
+          <div class="lb-header">🏆 CANLI SIRALAMA</div>
+          <div id="liveLeaderboard" class="lb-list">
+            <!-- JS ile 5 Takım buraya anlık dizilir -->
+          </div>
+        </div>
+
+        <!-- Takım Beğeni Sıralaması -->
+        <div class="leaderboard-box likes-box">
+          <div class="lb-header" style="color:#FF3366; display:flex; align-items:center; justify-content:space-between; gap:2px;">
+            <span>❤️ BEĞENİLER</span>
+            <span class="lb-sub-badge">1K=Boost⚡</span>
+          </div>
+          <div id="likesLeaderboard" class="lb-list">
+            <!-- JS ile 5 Takımın beğenileri ve ilerleme çubuğu -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Üst-Orta: Hediye / Boost Bildirim Banner'ı -->
+      <div id="boostToastContainer" class="boost-toast-container"></div>
+
+      <!-- Orta Durum Kartı (Katılım Açık / Finiş Sayacı) -->
+      <div id="centerBanner" class="center-banner">
+        <div class="banner-badge" id="bannerBadge">HAZIRLIK AÇIK</div>
+        <div class="banner-main" id="bannerMain">Takımını Destekle!</div>
+        <div class="banner-sub" id="bannerSub">❤️ 1000 Beğeni = Boost • 30 Jeton = Turbo • 100 Jeton = 2 Sn Dondur</div>
+      </div>
+
+      <!-- Oyun Sonu Şampiyonluk & Marş Modalı -->
+      <div id="podiumModal" class="podium-modal hidden">
+        <div class="podium-card">
+          <!-- JS ile kazanan takımın arması ve marş bilgisi buraya yüklenir -->
+        </div>
+      </div>
+
+      <!-- Sağ Kenar Dikey Hediye Güçleri Şeridi (Sola Çekilmiş & Tam Okunaklı) -->
+      <div class="gift-legend-bar">
+        <!-- 1.000 Beğeni Hedefi -->
+        <div class="legend-item tier-like">
+          <img class="leg-gift-img" src="/images/like_heart.svg" alt="1000 Beğeni" />
+          <div class="leg-info">
+            <span class="leg-name">1.000 Beğeni</span>
+            <span class="leg-power">❤️ Takımına Boost!</span>
+          </div>
+        </div>
+
+        <!-- 30 Jeton: Donut -->
+        <div class="legend-item tier-3">
+          <img class="leg-gift-img" src="/images/donut.svg" alt="Donut" />
+          <div class="leg-info">
+            <span class="leg-name">Donut (30 Jeton)</span>
+            <span class="leg-power">🚀 Engelsiz Turbo!</span>
+          </div>
+        </div>
+
+        <!-- 100 Jeton: El Kalbi -->
+        <div class="legend-item tier-glove">
+          <img class="leg-gift-img" src="/images/hand_heart.svg" alt="El Kalbi" />
+          <div class="leg-info">
+            <span class="leg-name">El Kalbi (100)</span>
+            <span class="leg-power">❄️ 1.'yi 2 Sn Dondur!</span>
+          </div>
+        </div>
+
+        <!-- 1 Jeton: Gül -->
+        <div class="legend-item tier-1">
+          <img class="leg-gift-img" src="/images/rose.svg" alt="Gül" />
+          <div class="leg-info">
+            <span class="leg-name">Gül (1 Jeton)</span>
+            <span class="leg-power">⚡ Nitro İvme</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Yayıncı Kontrol ve Test Paneli (H tuşuyla veya ?obs=1 ile gizlenir) -->
+    <div id="controlPanel" class="control-panel">
+      <div class="panel-header">
+        <h3>🎮 5 Takım Misket Yarışı Paneli</h3>
+      </div>
+
+      <div class="panel-section">
+        <label>📡 TikTok Canlı Yayın Bağlantısı</label>
+        <div class="input-row">
+          <input type="text" id="tiktokUsernameInput" placeholder="@tiktok_kullanici_adi" />
+          <button id="connectTiktokBtn" class="btn-primary">Bağlan</button>
+          <button id="disconnectTiktokBtn" class="btn-secondary" title="TikTok Bağlantısını Kes">Kes</button>
+        </div>
+        <div id="tiktokStatusText" class="status-text">Simülasyon / Test Modu Aktif</div>
+      </div>
+
+      <!-- 1000 Beğeni Testleri -->
+      <div class="panel-section">
+        <label>❤️ Takım Beğeni Testleri (1000 = Boost)</label>
+        <div class="btn-grid" style="grid-template-columns: repeat(5, 1fr); margin-bottom:6px;">
+          <button class="btn-secondary team-like-test-btn" data-team="FB">+200 ❤️</button>
+          <button class="btn-secondary team-like-test-btn" data-team="GS">+200 ❤️</button>
+          <button class="btn-secondary team-like-test-btn" data-team="BJK">+200 ❤️</button>
+          <button class="btn-secondary team-like-test-btn" data-team="TS">+200 ❤️</button>
+          <button class="btn-secondary team-like-test-btn" data-team="AMED">+200 ❤️</button>
+        </div>
+        <button id="test1000LikesBtn" class="btn-secondary" style="width:100%; background:linear-gradient(135deg, #FF1744, #FF5252); color:#fff; font-weight:900; padding:8px; border-radius:8px;">
+          ⚡ 1.000 Beğeni Boost Testi (Lider Takıma)
+        </button>
+      </div>
+
+      <div class="panel-section">
+        <label>🚀 30 Jetonluk Takım Turbo Boost Testleri</label>
+        <div class="btn-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:6px;">
+          <button class="btn-secondary team-boost-test-btn" data-team="FB" style="background:#001C5B; color:#FFE600; border:1.5px solid #FFE600; font-weight:900;">🟡🔵 FB Turbo (+30)</button>
+          <button class="btn-secondary team-boost-test-btn" data-team="GS" style="background:#C8102E; color:#FFB81C; border:1.5px solid #FFB81C; font-weight:900;">🟡🔴 GS Turbo (+30)</button>
+          <button class="btn-secondary team-boost-test-btn" data-team="BJK" style="background:#111111; color:#FFFFFF; border:1.5px solid #FFFFFF; font-weight:900;">⚫⚪ BJK Turbo (+30)</button>
+          <button class="btn-secondary team-boost-test-btn" data-team="TS" style="background:#800020; color:#41B6E6; border:1.5px solid #41B6E6; font-weight:900;">🔴🔵 TS Turbo (+30)</button>
+        </div>
+        <button class="btn-secondary team-boost-test-btn" data-team="AMED" style="width:100%; background:#00843D; color:#FFFFFF; border:1.5px solid #FFE600; font-weight:900; padding:9px;">🔴🟢 AMEDSPOR Turbo (+30)</button>
+      </div>
+
+      <div class="panel-section">
+        <label>❄️ 100 Jetonluk Tuzak Testi (2 Saniye Dondur)</label>
+        <button id="testFreezeBtn" class="btn-danger" style="width:100%; background:linear-gradient(135deg, #00C9FF, #92FE9D); color:#0B1021; font-weight:900; font-size:14px; padding:11px; border-radius:8px;">
+          ❄️ 1. Sıradaki Takımı Dondur (100 Jeton - 2 Sn)
+        </button>
+      </div>
+
+      <div class="panel-section">
+        <label>🎵 Şampiyonluk Marş Testleri</label>
+        <div class="btn-grid" style="grid-template-columns: repeat(5, 1fr); margin-bottom:6px;">
+          <button class="btn-secondary anthem-test-btn" data-team="FB">FB</button>
+          <button class="btn-secondary anthem-test-btn" data-team="GS">GS</button>
+          <button class="btn-secondary anthem-test-btn" data-team="BJK">BJK</button>
+          <button class="btn-secondary anthem-test-btn" data-team="TS">TS</button>
+          <button class="btn-secondary anthem-test-btn" data-team="AMED">AMED</button>
+        </div>
+        <button id="stopAnthemBtn" class="btn-secondary" style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); color:#cbd5e1; font-weight:800; padding:6px; font-size:12px;">
+          ⏹️ Çalan Marşı Durdur
+        </button>
+        <small style="display:block; margin-top:6px; color:#A0AEC0; font-size:11px; line-height:1.4;">
+          İpucu: <code>public/audio/</code> klasöründeki MP3'ler anında çalar. Butona tekrar basarak veya "Durdur" ile kapatabilirsiniz.
+        </small>
+      </div>
+
+      <div class="panel-section">
+        <label>⚡ Yarış Akışı</label>
+        <div class="btn-grid" style="grid-template-columns: 1fr 1fr;">
+          <button id="skipTimerBtn" class="btn-warning">⚡ Başlat / Atla</button>
+          <button id="resetRaceBtn" class="btn-danger">🔄 Sıfırla / Yeni Tur</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <label>🔊 Ses Seviyesi</label>
+        <div class="input-row" style="align-items:center;">
+          <input type="range" id="panelVolumeSlider" class="panel-volume-slider" min="0" max="100" value="25" />
+          <span id="panelVolumeValue" style="font-weight:900; min-width:42px; text-align:right; color:#FFE600;">25%</span>
+        </div>
+      </div>
+
+      <div class="panel-section obs-hint">
+        <strong>🎥 TikTok Live Studio / OBS Kurulumu:</strong><br/>
+        Bağlantı (Browser Source) olarak bu sayfayı ekleyin.<br/>
+        Boyut: <strong>1080 x 1920</strong> (veya 720 x 1280).
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js?v=teams-pro-7"></script>
+</body>
+</html>
