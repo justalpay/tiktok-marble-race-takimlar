@@ -63,16 +63,21 @@ body.obs-mode #controlPanel {
   display: block;
 }
 
-/* SOL ÜST HUD (TikTok Mobil Üst Bar & iPhone Güvenli Alanı) */
+/* SOL ÜST HUD (Localhost Önizlemede Tam Genişlik, OBS/Mobil Yayında Güvenli İç Alan) */
 .hud-top-left {
   position: absolute;
-  top: 12px;
-  left: 88px;
-  width: 146px;
+  top: 10px;
+  left: 8px;
+  width: 31%;
   display: flex;
   flex-direction: column;
   gap: 4px;
   z-index: 20;
+}
+body.obs-mode .hud-top-left {
+  top: 12px;
+  left: 86px;
+  width: 148px;
 }
 
 /* Yayın (?obs=1) ekranında izleyicinin ses sürgüsünü görmesine gerek yok; üst alanı ferahlat */
@@ -204,18 +209,23 @@ body.obs-mode .sound-control-row {
   cursor: pointer;
 }
 
-/* SAĞ ÜST LİDER TABLOSU VE BEĞENİ YARIŞI (YAN YANA, MOBİL GÜVENLİ ALANA ORTALI) */
+/* SAĞ ÜST LİDER TABLOSU VE BEĞENİ YARIŞI (YAN YANA) */
 .hud-top-right {
   position: absolute;
-  top: 12px;
-  left: 240px;
-  right: 88px;
+  top: 10px;
+  left: calc(31% + 13px);
+  right: 8px;
   width: auto;
   z-index: 20;
   display: flex;
   flex-direction: row;
   align-items: stretch;
   gap: 5px;
+}
+body.obs-mode .hud-top-right {
+  top: 12px;
+  left: 240px;
+  right: 86px;
 }
 
 .leaderboard-box {
@@ -357,9 +367,15 @@ body.obs-mode .sound-control-row {
 .center-banner {
   position: absolute;
   top: 158px;
-  left: 88px;
-  right: 88px;
+  left: 10px;
+  right: 10px;
   width: auto;
+}
+body.obs-mode .center-banner {
+  top: 158px;
+  left: 86px;
+  right: 86px;
+}
   background: linear-gradient(180deg, rgba(50, 20, 110, 0.92) 0%, rgba(26, 9, 64, 0.94) 100%);
   border: 2px solid #00e5ff;
   border-radius: 14px;
@@ -627,14 +643,18 @@ body.obs-mode .sound-control-row {
 #stream-stage .gift-legend-bar {
   position: absolute;
   left: auto;
-  right: 92px;
-  bottom: 176px;
+  right: 10px;
+  bottom: 24px;
   width: max-content;
   display: flex;
   flex-direction: column;
   gap: 4px;
   z-index: 19;
   pointer-events: none;
+}
+body.obs-mode #stream-stage .gift-legend-bar {
+  right: 92px;
+  bottom: 176px;
 }
 
 .legend-item {

@@ -169,7 +169,7 @@ function connectToTikTok(username) {
 
   const conn = new TikTokLiveConnection(currentUsername, {
     processInitialData: false,
-    enableExtendedGiftInfo: true,
+    enableExtendedGiftInfo: false,
     fetchRoomInfoOnConnect: true
   });
   conn._justEndedStream = false;
@@ -213,12 +213,16 @@ function connectToTikTok(username) {
       scheduleAutoRetry(nextDelay);
     } else {
       console.error('TikTok Baglanti Hatasi:', rawMsg);
+      const isTransientSignErr = /Empty Payload|fetchWebcastSignature|sign|timeout|ECONNRESET/i.test(rawMsg);
+      const retryMs = isTransientSignErr ? 3000 : nextDelay;
+      if (isTransientSignErr) retryBackoffMs = 5000;
       broadcastStatus({
         connected: false,
+        connecting: true,
         username: currentUsername,
-        message: `🔄 @${currentUsername} bekleniyor (${rawMsg.slice(0, 38)})...`
+        message: `🔄 @${currentUsername} yeniden deneniyor (3sn)...`
       });
-      scheduleAutoRetry(nextDelay);
+      scheduleAutoRetry(retryMs);
     }
   });
 
