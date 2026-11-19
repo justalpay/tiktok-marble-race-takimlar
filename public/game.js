@@ -331,12 +331,12 @@ class SoundEngine {
     this.blobUrls = this.blobUrls || {};
 
     const files = {
-      BG: '/audio/bg_match.mp3?v=6',
-      FB: '/audio/fb.mp3?v=6',
-      GS: '/audio/gs.mp3?v=6',
-      BJK: '/audio/bjk.mp3?v=6',
-      TS: '/audio/ts.mp3?v=6',
-      AMED: '/audio/amed.mp3?v=6'
+      BG: '/audio/bg_match.mp3?v=7',
+      FB: '/audio/fb.mp3?v=7',
+      GS: '/audio/gs.mp3?v=7',
+      BJK: '/audio/bjk.mp3?v=7',
+      TS: '/audio/ts.mp3?v=7',
+      AMED: '/audio/amed.mp3?v=7'
     };
 
     if (typeof fetch !== 'function' || typeof URL === 'undefined' || typeof URL.createObjectURL !== 'function') {
@@ -359,8 +359,8 @@ class SoundEngine {
     if (this.blobUrls && this.blobUrls[key]) {
       return this.blobUrls[key];
     }
-    if (key === 'BG') return '/audio/bg_match.mp3?v=6';
-    return `/audio/${key.toLowerCase()}.mp3?v=6`;
+    if (key === 'BG') return '/audio/bg_match.mp3?v=7';
+    return `/audio/${key.toLowerCase()}.mp3?v=7`;
   }
 
   _ensureMasterAudio() {
