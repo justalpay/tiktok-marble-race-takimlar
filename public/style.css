@@ -98,21 +98,28 @@ body.obs-mode #controlPanel {
   display: block;
 }
 
-/* SOL ÜST HUD (Localhost Önizlemede Tam Genişlik, OBS/Mobil Yayında Güvenli İç Alan) */
+/* SOL ÜST HUD (Kamera Boşluğu ve Altında Takım Katılım Kutusu) */
 .hud-top-left {
   position: absolute;
   top: 10px;
   left: 8px;
-  width: 31%;
+  width: 29%;
+  max-width: 160px;
   display: flex;
   flex-direction: column;
   gap: 4px;
   z-index: 20;
 }
 body.obs-mode .hud-top-left {
-  top: 12px;
-  left: 86px;
+  top: 10px;
+  left: 10px;
   width: 148px;
+}
+
+.camera-slot-space {
+  width: 100%;
+  height: 65px; /* Yayıncının kamerası tam buraya oturur */
+  flex-shrink: 0;
 }
 
 /* Yayın (?obs=1) ekranında izleyicinin ses sürgüsünü görmesine gerek yok; üst alanı ferahlat */
