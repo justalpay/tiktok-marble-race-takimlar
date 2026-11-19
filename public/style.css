@@ -317,12 +317,12 @@ body.obs-mode .hud-top-right {
 
 .lb-header {
   font-family: 'Fredoka', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 13.5px;
+  font-weight: 800;
   color: #ffe600;
   text-align: center;
-  margin-bottom: 3px;
-  letter-spacing: 0.2px;
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -673,30 +673,30 @@ body.obs-mode .center-banner {
 #stream-stage .gift-legend-bar {
   position: absolute;
   left: auto;
-  right: 12px;
-  bottom: 24%; /* Sohbetin üstünde, takım kutusu ve hediyeler birlikte sığsın */
+  right: 14px;
+  bottom: 22%; /* Sohbetin üstünde, takım kutusu ve hediyeler birlikte sığsın */
   width: max-content;
-  max-width: 195px;
+  max-width: 245px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   z-index: 19;
   pointer-events: none;
 }
 body.obs-mode #stream-stage .gift-legend-bar {
   right: 18px;
-  bottom: 24%;
+  bottom: 22%;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 9px;
-  background: rgba(16, 6, 44, 0.94);
+  gap: 10px;
+  background: rgba(16, 6, 44, 0.95);
   border: 2px solid rgba(255, 255, 255, 0.35);
-  border-radius: 12px;
-  padding: 6px 12px 6px 8px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+  border-radius: 14px;
+  padding: 7px 14px 7px 9px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65);
 }
 .legend-item.tier-like { border-color: rgba(255, 23, 68, 0.95); background: rgba(35, 10, 25, 0.92); }
 .legend-item.tier-1 { border-color: rgba(255, 107, 139, 0.95); }
@@ -707,20 +707,20 @@ body.obs-mode #stream-stage .gift-legend-bar {
 .legend-item.tier-4 { border-color: rgba(255, 215, 0, 0.95); }
 
 .leg-emoji {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .leg-gift-img {
-  width: 34px;
-  height: 34px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.65));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
   flex-shrink: 0;
 }
 
 .gift-btn-img {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45));
 }
@@ -741,7 +741,7 @@ body.obs-mode #stream-stage .gift-legend-bar {
   border-radius: 999px;
   padding: 5px 15px;
   font-family: 'Fredoka', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: #fff;
   box-shadow: 0 6px 20px rgba(255, 0, 127, 0.65);
@@ -750,8 +750,8 @@ body.obs-mode #stream-stage .gift-legend-bar {
 }
 
 .toast-gift-img {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
 }
@@ -764,7 +764,7 @@ body.obs-mode #stream-stage .gift-legend-bar {
 
 .leg-name {
   font-family: 'Fredoka', sans-serif;
-  font-size: 13.5px;
+  font-size: 15.5px;
   font-weight: 800;
   color: #fff;
   white-space: nowrap;
@@ -772,7 +772,7 @@ body.obs-mode #stream-stage .gift-legend-bar {
 }
 
 .leg-power {
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 900;
   color: #ffe600;
   white-space: nowrap;
@@ -791,46 +791,47 @@ body.obs-mode #stream-stage .gift-legend-bar {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: rgba(16, 6, 44, 0.94);
-  border: 2px solid rgba(0, 229, 255, 0.85);
-  border-radius: 12px;
-  padding: 6px 9px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.55);
+  background: rgba(16, 6, 44, 0.95);
+  border: 2px solid rgba(0, 229, 255, 0.9);
+  border-radius: 14px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.65);
 }
 
 .join-call-icon {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .join-call-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   line-height: 1.25;
 }
 
 .join-call-text strong {
   font-family: 'Fredoka', sans-serif;
-  font-size: 9.5px;
-  color: #00e5ff;
-  letter-spacing: 0.15px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.85);
+  font-size: 15px;
+  font-weight: 900;
+  color: #00F5D4;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
 
 .join-teams-sub {
-  font-size: 8.8px;
+  font-size: 13px;
   font-weight: 900;
-  color: #ffffff;
-  letter-spacing: 0.1px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.85);
+  color: #FFE600;
+  letter-spacing: 0.4px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
 
 .join-call-text span#joinRuleHint {
-  font-size: 8.6px;
+  font-size: 11.5px;
   font-weight: 800;
-  color: #ffe600;
-  line-height: 1.3;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.85);
+  color: #ffffff;
+  line-height: 1.35;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
 
 .last-joiner-box {

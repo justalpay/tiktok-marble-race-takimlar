@@ -2512,17 +2512,17 @@ function updateLikesHUD() {
     const progressPct = Math.min(100, Math.floor((progressInCycle / 1000) * 100));
 
     html += `
-      <div class="likes-team-row" style="margin-bottom:2px; padding:2px 4px; background:rgba(255,255,255,0.06); border-radius:5px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; font-size:10px; line-height:1.15; white-space:nowrap;">
-          <div style="display:flex; align-items:center; gap:3px; min-width:0;">
-            <span style="font-weight:900; color:#FF5252; font-size:9.5px;">${idx + 1}.</span>
-            <span style="background:${team.secondaryColor}; color:${team.color}; padding:1px 4px; border-radius:3px; font-weight:900; font-size:9px;">${team.short}</span>
+      <div class="likes-team-row" style="margin-bottom:3px; padding:3px 6px; background:rgba(255,255,255,0.08); border-radius:6px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; font-size:13.5px; line-height:1.2; white-space:nowrap;">
+          <div style="display:flex; align-items:center; gap:4px; min-width:0;">
+            <span style="font-weight:900; color:#FF5252; font-size:13px;">${idx + 1}.</span>
+            <span style="background:${team.secondaryColor}; color:${team.color}; padding:2px 5px; border-radius:4px; font-weight:900; font-size:12px;">${team.short}</span>
           </div>
-          <div style="font-weight:900; color:#FF5252; font-size:10px; flex-shrink:0;">
+          <div style="font-weight:900; color:#FF5252; font-size:13px; flex-shrink:0;">
             ${likes.toLocaleString('tr-TR')} ❤️
           </div>
         </div>
-        <div style="background:rgba(255,255,255,0.14); height:3px; border-radius:2px; margin-top:2px; overflow:hidden;">
+        <div style="background:rgba(255,255,255,0.18); height:4px; border-radius:3px; margin-top:3px; overflow:hidden;">
           <div style="background:linear-gradient(90deg, #FF1744, #FFE600); width:${progressPct}%; height:100%;"></div>
         </div>
       </div>
@@ -2548,15 +2548,15 @@ function updateHUD(force = false) {
       const isLead = idx === 0 && gameState === 'RACING';
       const statusIcon = m.freezeTimer > 0 ? '❄️' : (m.ghostTimer > 0 ? '🚀' : '');
       html += `
-        <div class="lb-row ${isLead ? 'lead-row' : ''}" style="display:flex; align-items:center; justify-content:space-between; padding:2px 4px; font-size:10.5px; margin-bottom:2px; white-space:nowrap; gap:3px;">
+        <div class="lb-row ${isLead ? 'lead-row' : ''}" style="display:flex; align-items:center; justify-content:space-between; padding:3px 6px; font-size:13.5px; margin-bottom:3px; white-space:nowrap; gap:4px;">
           <div style="display:flex; align-items:center; min-width:0; overflow:hidden;">
-            <span style="font-weight:900; color:#FFE600; margin-right:3px; font-size:10px;">${idx + 1}.</span>
-            <span style="background:${m.team.secondaryColor}; color:${m.team.color}; padding:1px 4px; border-radius:3px; font-weight:900; font-size:9px; flex-shrink:0;">${m.team.short}</span>
-            <span style="font-weight:800; color:#fff; margin-left:3px; overflow:hidden; text-overflow:ellipsis; font-size:10px;">${m.team.name}</span>
+            <span style="font-weight:900; color:#FFE600; margin-right:4px; font-size:13px;">${idx + 1}.</span>
+            <span style="background:${m.team.secondaryColor}; color:${m.team.color}; padding:2px 5px; border-radius:4px; font-weight:900; font-size:12px; flex-shrink:0;">${m.team.short}</span>
+            <span style="font-weight:800; color:#fff; margin-left:4px; overflow:hidden; text-overflow:ellipsis; font-size:13px;">${m.team.name}</span>
           </div>
           <div style="display:flex; align-items:center; flex-shrink:0;">
-            <span style="font-size:10px; margin-right:2px;">${statusIcon}</span>
-            <span style="font-weight:900; color:#00F5D4; font-size:10px;">🏆 ${m.team.wins}</span>
+            <span style="font-size:13px; margin-right:3px;">${statusIcon}</span>
+            <span style="font-weight:900; color:#00F5D4; font-size:13px;">🏆 ${m.team.wins}</span>
           </div>
         </div>
       `;
