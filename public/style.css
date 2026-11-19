@@ -48,6 +48,10 @@ body {
   body {
     background: #1a0b3b;
     overflow: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
   }
   #app-wrapper {
     padding: 0 !important;
@@ -61,6 +65,7 @@ body {
     height: 100vh !important;
     max-height: none !important;
     max-width: none !important;
+    aspect-ratio: auto !important;
     border-radius: 0 !important;
     box-shadow: none !important;
   }
@@ -72,6 +77,10 @@ body {
 /* OBS modunda tam ekran kenarlıksız */
 body.obs-mode {
   background: #1a0b3b;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
 }
 body.obs-mode #app-wrapper {
   padding: 0 !important;
@@ -85,6 +94,7 @@ body.obs-mode #stream-stage {
   width: 100vw !important;
   max-height: none !important;
   max-width: none !important;
+  aspect-ratio: auto !important;
   border-radius: 0 !important;
   box-shadow: none !important;
 }
