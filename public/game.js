@@ -542,8 +542,8 @@ const sfx = new SoundEngine();
 // 3. OYUN DURUMU & PİST DEĞİŞKENLERİ
 // ============================================================================
 const FIXED_DT = 1 / 60;
-const JOIN_DURATION = 14;     // Hazırlık süresi
-const PODIUM_DURATION = 12;   // Şampiyonluk & marş kutlama süresi
+const JOIN_DURATION = 6;      // Hızlı hazırlık (izleyicinin sıkılıp kaçmaması için 6 sn)
+const PODIUM_DURATION = 8;    // Şampiyonluk & marş kutlama süresi (8 sn)
 
 let gameState = 'LOBBY_RING'; // 'LOBBY_RING' | 'RACING' | 'PODIUM'
 let stateTimer = JOIN_DURATION;
@@ -2805,19 +2805,20 @@ function stepGameTimers(dt) {
 }
 
 function stepSimulation(now) {
-  const dt = Math.min(0.5, Math.max(0, (now - lastSimTime) / 1000));
-  lastSimTime = now;
+  const curTime = (typeof now === 'number' && now > 0) ? now : performance.now();
+  const dt = Math.min(0.08, Math.max(0, (curTime - lastSimTime) / 1000));
+  lastSimTime = curTime;
 
   physicsAccumulator += dt;
   let steps = 0;
-  // Hem Host hem OBS tam 60 FPS fizik koşturur; böylece OBS'de toplar asla takılmaz, yağ gibi akar!
-  while (physicsAccumulator >= FIXED_DT && steps < 35) {
+  // Sabit adımda 60 FPS fizik simülasyonu (Spiral of death korumasıyla max 10 adım)
+  while (physicsAccumulator >= FIXED_DT && steps < 10) {
     stepGameTimers(FIXED_DT);
     updatePhysics(FIXED_DT);
     physicsAccumulator -= FIXED_DT;
     steps++;
   }
-  if (steps === 35) physicsAccumulator = 0;
+  if (steps === 10) physicsAccumulator = 0;
 }
 
 function gameLoop(now) {
@@ -3020,6 +3021,12 @@ window.addEventListener('DOMContentLoaded', () => {
   requestAnimationFrame(gameLoop);
 });
 
+// Sekme simge durumundan öne gelince fizik zamanlayıcısını pürüzsüz sıfırla
+document.addEventListener('visibilitychange', () => {
+  lastSimTime = performance.now();
+  physicsAccumulator = 0;
+});
+
 // ============================================================================
 // 14. WEB WORKER ARKA PLAN SAATİ & HOST -> OBS CANLI SENKRONİZASYON MOTORU
 // ============================================================================
@@ -3030,8 +3037,9 @@ if (!isObsClient) {
 
   function onBackgroundHeartbeat() {
     const now = performance.now();
-    // Sekme arka planda kaldığı için requestAnimationFrame durduysa fiziği tam 60 FPS ilerlet!
-    if (now - lastSimTime >= 25) {
+    // YALNIZCA sekme arka planda/simge durumunda ise Web Worker fiziği ilerletsin!
+    // Sekme açıkken requestAnimationFrame zaten çalışır; ikisi aynı anda çalışırsa kareler çakışır ve donma yapar.
+    if (document.hidden && (now - lastSimTime >= 25)) {
       stepSimulation(now);
     }
 
