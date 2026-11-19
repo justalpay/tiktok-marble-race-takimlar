@@ -4,7 +4,7 @@
 // ============================================================================
 
 const canvas = document.getElementById('raceCanvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d', { alpha: false });
 const W = canvas.width;   // 720
 const H = canvas.height;  // 1280
 
@@ -2041,18 +2041,19 @@ function drawCandyBackground() {
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, W, H);
 
-  // Neşeli Parlak Polka Noktaları / Grid Deseni (Parallax)
+  // Neşeli Parlak Polka Noktaları / Grid Deseni (Parallax - Tek çağrıda optimize çizim)
   ctx.save();
   ctx.fillStyle = 'rgba(255, 255, 255, 0.045)';
   const spacing = 80;
   const offsetY = -(cameraY * 0.4) % spacing;
+  ctx.beginPath();
   for (let y = offsetY - spacing; y < H + spacing; y += spacing) {
     for (let x = 40; x < W; x += spacing) {
-      ctx.beginPath();
+      ctx.moveTo(x + 5, y);
       ctx.arc(x, y, 5, 0, Math.PI * 2);
-      ctx.fill();
     }
   }
+  ctx.fill();
   ctx.restore();
 
   // Yan Duvar Şeker Şeritleri

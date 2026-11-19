@@ -16,17 +16,8 @@
       <!-- Oyun Canvas'ı (Yüksek çözünürlük 720x1280) -->
       <canvas id="raceCanvas" width="720" height="1280"></canvas>
 
-      <!-- Sol Üst: Yayıncı Kamerası Alanı & Takım Katılım Kutusu -->
-      <div class="hud-top-left">
-        <div class="camera-slot-space"></div>
-        <div class="join-call-box">
-          <div class="join-call-text">
-            <strong>⚽ TAKIMINI YAZ!</strong>
-            <span class="join-teams-sub">FB • GS • BJK • TS • AMED</span>
-            <span id="joinRuleHint">❤️ Beğenilerle takımına güç kat!<br/>🎁 Hediyelerle parkuru hızlandır!</span>
-          </div>
-        </div>
-      </div>
+      <!-- Sol Üst: Sadece Yayıncı Kamerası Alanı (Tamamen Boş ve Temiz) -->
+      <div class="hud-top-left"></div>
 
       <!-- Sağ Üst: Anlık Sıralama & Beğeni Yarışı (Yan Yana, Ortalanmış) -->
       <div class="hud-top-right">
@@ -67,8 +58,17 @@
         </div>
       </div>
 
-      <!-- Sağ Kenar Dikey Hediye Güçleri Şeridi (Sola Çekilmiş & Tam Okunaklı) -->
+      <!-- Sağ Kenar: Takım Seçme & Hediye Güçleri Şeridi -->
       <div class="gift-legend-bar">
+        <!-- Takım Katılım Kutusu (Hediye Galerisinin Üstü) -->
+        <div class="join-call-box">
+          <div class="join-call-text">
+            <strong>⚽ TAKIMINI YAZ!</strong>
+            <span class="join-teams-sub">FB • GS • BJK • TS • AMED</span>
+            <span id="joinRuleHint">❤️ Beğenilerle takımına güç kat!<br/>🎁 Hediyelerle parkuru hızlandır!</span>
+          </div>
+        </div>
+
         <!-- Beğeni Hedefi -->
         <div class="legend-item tier-like">
           <img class="leg-gift-img" src="/images/like_heart.svg" alt="Beğeni" />
