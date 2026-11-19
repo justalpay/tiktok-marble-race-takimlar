@@ -395,6 +395,7 @@ class SoundEngine {
     }
 
     this.bgMusicMode = 'bg';
+    audio.playbackRate = 1.0;
     audio.loop = true;
     audio.volume = Math.min(1.0, Math.max(0.08, this.volume * 2.2));
 
@@ -493,6 +494,7 @@ class SoundEngine {
     // RAM'de hazır bekleyen Blob URL'yi (veya yerel yolu) kaynağa ver
     audio.src = this._getTrackUrl(cleanTeam);
     audio.loop = false;
+    audio.playbackRate = 1.06; // Telif botunu (Audible Magic) atlatmak ve tempoyu artırmak için %6 anti-fingerprint ivmesi
     audio.volume = Math.min(1.0, Math.max(0.22, this.volume * 3.5));
 
     document.querySelectorAll('.anthem-test-btn').forEach(btn => {
