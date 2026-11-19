@@ -36,26 +36,57 @@ body {
   position: relative;
   height: calc(100vh - 20px);
   aspect-ratio: 9 / 16;
-  max-height: 1280px;
+  max-height: 980px;
   background: #1a0b3b;
   border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75), 0 0 0 4px rgba(255, 255, 255, 0.18);
 }
 
+/* Dikey / Yayıncı / OBS / TikTok Live Studio Modu (9:16 Tam Ekran Siyahlıksız) */
+@media (max-aspect-ratio: 1/1) {
+  body {
+    background: #1a0b3b;
+    overflow: hidden;
+  }
+  #app-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    gap: 0 !important;
+  }
+  #stream-stage {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: none !important;
+    max-width: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  #controlPanel {
+    display: none !important;
+  }
+}
+
 /* OBS modunda tam ekran kenarlıksız */
 body.obs-mode {
-  background: transparent;
+  background: #1a0b3b;
 }
 body.obs-mode #app-wrapper {
-  padding: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  gap: 0 !important;
 }
 body.obs-mode #stream-stage {
-  height: 100vh;
-  width: 100vw;
-  max-height: none;
-  border-radius: 0;
-  box-shadow: none;
+  height: 100vh !important;
+  width: 100vw !important;
+  max-height: none !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 body.obs-mode #controlPanel {
   display: none !important;
@@ -635,68 +666,64 @@ body.obs-mode .center-banner {
   pointer-events: none;
 }
 
-/* Hediye kutularını sohbet akışından uzak, sağ güvenli çerçeve içine (alt barın hemen üstüne) hizala */
-.gift-legend-bar {
-  position: fixed;
-  /* #stream-stage içinde absolute olarak sağ kenara yaslanır */
-}
+/* Hediye kutularını sohbet akışından uzak, sağ güvenli çerçeve içine hizala */
 #stream-stage .gift-legend-bar {
   position: absolute;
   left: auto;
-  right: 10px;
-  bottom: 24px;
+  right: 12px;
+  bottom: 35%; /* TikTok yorum ve buton alanının hemen üstünde okunaklı alan */
   width: max-content;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 7px;
   z-index: 19;
   pointer-events: none;
 }
 body.obs-mode #stream-stage .gift-legend-bar {
-  right: 92px;
-  bottom: 176px;
+  right: 18px;
+  bottom: 35%;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 9px;
   background: rgba(16, 6, 44, 0.94);
-  border: 1.5px solid rgba(255, 255, 255, 0.28);
-  border-radius: 10px;
-  padding: 3px 7px 3px 5px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  padding: 6px 12px 6px 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
 }
-.legend-item.tier-like { border-color: rgba(255, 23, 68, 0.95); background: rgba(35, 10, 25, 0.85); }
-.legend-item.tier-1 { border-color: rgba(255, 107, 139, 0.85); }
-.legend-item.tier-2 { border-color: rgba(255, 159, 28, 0.85); }
-.legend-item.tier-ice { border-color: rgba(0, 229, 255, 0.85); }
-.legend-item.tier-3 { border-color: rgba(0, 245, 212, 0.85); }
-.legend-item.tier-glove { border-color: rgba(255, 42, 133, 0.85); }
-.legend-item.tier-4 { border-color: rgba(255, 215, 0, 0.9); }
+.legend-item.tier-like { border-color: rgba(255, 23, 68, 0.95); background: rgba(35, 10, 25, 0.92); }
+.legend-item.tier-1 { border-color: rgba(255, 107, 139, 0.95); }
+.legend-item.tier-2 { border-color: rgba(255, 159, 28, 0.95); }
+.legend-item.tier-ice { border-color: rgba(0, 229, 255, 0.95); }
+.legend-item.tier-3 { border-color: rgba(0, 245, 212, 0.95); }
+.legend-item.tier-glove { border-color: rgba(255, 42, 133, 0.95); }
+.legend-item.tier-4 { border-color: rgba(255, 215, 0, 0.95); }
 
 .leg-emoji {
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .leg-gift-img {
-  width: 24px;
-  height: 24px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.65));
   flex-shrink: 0;
 }
 
 .gift-btn-img {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45));
 }
 
 .tt-coin-inline {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
   vertical-align: -2px;
   margin-right: 2px;
 }
@@ -719,8 +746,8 @@ body.obs-mode #stream-stage .gift-legend-bar {
 }
 
 .toast-gift-img {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
 }
@@ -733,19 +760,19 @@ body.obs-mode #stream-stage .gift-legend-bar {
 
 .leg-name {
   font-family: 'Fredoka', sans-serif;
-  font-size: 10.5px;
-  font-weight: 700;
+  font-size: 13.5px;
+  font-weight: 800;
   color: #fff;
   white-space: nowrap;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.85);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
 
 .leg-power {
-  font-size: 9.5px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 900;
   color: #ffe600;
   white-space: nowrap;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.85);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
 
 .bottom-status-row {
