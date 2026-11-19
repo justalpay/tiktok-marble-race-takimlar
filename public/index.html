@@ -29,7 +29,7 @@
           <div class="join-call-text">
             <strong>📢 YORUMA TAKIMINI YAZ!</strong>
             <span class="join-teams-sub">FB • GS • BJK • TS • AMED</span>
-            <span id="joinRuleHint">❤️ 1000 Beğeni = Takıma Boost<br/>🍩 30 Jeton = Engelsiz Turbo<br/>❄️ 100 Jeton = 1.'yi 2 Sn Dondur</span>
+            <span id="joinRuleHint">❤️ Beğenilerle takımına güç kat!<br/>🎁 Hediyelerle parkuru hızlandır!</span>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <div class="leaderboard-box likes-box">
           <div class="lb-header" style="color:#FF3366; display:flex; align-items:center; justify-content:space-between; gap:2px;">
             <span>❤️ BEĞENİLER</span>
-            <span class="lb-sub-badge">1K=Boost⚡</span>
+            <span class="lb-sub-badge">Destek⚡</span>
           </div>
           <div id="likesLeaderboard" class="lb-list">
             <!-- JS ile 5 Takımın beğenileri ve ilerleme çubuğu -->
@@ -63,7 +63,7 @@
       <div id="centerBanner" class="center-banner">
         <div class="banner-badge" id="bannerBadge">HAZIRLIK AÇIK</div>
         <div class="banner-main" id="bannerMain">Takımını Destekle!</div>
-        <div class="banner-sub" id="bannerSub">❤️ 1000 Beğeni = Boost • 30 Jeton = Turbo • 100 Jeton = 2 Sn Dondur</div>
+        <div class="banner-sub" id="bannerSub">🏁 Takımını Yorumlarda ve Beğenilerle Destekle!</div>
       </div>
 
       <!-- Oyun Sonu Şampiyonluk & Marş Modalı -->
@@ -75,38 +75,38 @@
 
       <!-- Sağ Kenar Dikey Hediye Güçleri Şeridi (Sola Çekilmiş & Tam Okunaklı) -->
       <div class="gift-legend-bar">
-        <!-- 1.000 Beğeni Hedefi -->
+        <!-- Beğeni Hedefi -->
         <div class="legend-item tier-like">
-          <img class="leg-gift-img" src="/images/like_heart.svg" alt="1000 Beğeni" />
+          <img class="leg-gift-img" src="/images/like_heart.svg" alt="Beğeni" />
           <div class="leg-info">
-            <span class="leg-name">1.000 Beğeni</span>
+            <span class="leg-name">Beğeni</span>
             <span class="leg-power">❤️ Takımına Boost!</span>
           </div>
         </div>
 
-        <!-- 30 Jeton: Donut -->
+        <!-- Donut -->
         <div class="legend-item tier-3">
           <img class="leg-gift-img" src="/images/donut.svg" alt="Donut" />
           <div class="leg-info">
-            <span class="leg-name">Donut (30 Jeton)</span>
+            <span class="leg-name">Donut</span>
             <span class="leg-power">🚀 Engelsiz Turbo!</span>
           </div>
         </div>
 
-        <!-- 100 Jeton: El Kalbi -->
+        <!-- El Kalbi -->
         <div class="legend-item tier-glove">
           <img class="leg-gift-img" src="/images/hand_heart.svg" alt="El Kalbi" />
           <div class="leg-info">
-            <span class="leg-name">El Kalbi (100)</span>
-            <span class="leg-power">❄️ 1.'yi 2 Sn Dondur!</span>
+            <span class="leg-name">El Kalbi</span>
+            <span class="leg-power">❄️ Buz Tuzağı (Dondur)!</span>
           </div>
         </div>
 
-        <!-- 1 Jeton: Gül -->
+        <!-- Gül -->
         <div class="legend-item tier-1">
           <img class="leg-gift-img" src="/images/rose.svg" alt="Gül" />
           <div class="leg-info">
-            <span class="leg-name">Gül (1 Jeton)</span>
+            <span class="leg-name">Gül</span>
             <span class="leg-power">⚡ Nitro İvme</span>
           </div>
         </div>
@@ -185,6 +185,13 @@
           <button id="skipTimerBtn" class="btn-warning">⚡ Başlat / Atla</button>
           <button id="resetRaceBtn" class="btn-danger">🔄 Sıfırla / Yeni Tur</button>
         </div>
+      </div>
+
+      <div class="panel-section">
+        <label>🛡️ TikTok Güvenli Mod (Anti-Ban)</label>
+        <button id="toggleLegendBtn" class="btn-secondary" style="width:100%; background:rgba(0, 245, 212, 0.15); border:1.5px solid #00F5D4; color:#00F5D4; font-weight:800; padding:8px; border-radius:8px;">
+          👁️ Hediye Şeridini Gizle / Göster
+        </button>
       </div>
 
       <div class="panel-section">

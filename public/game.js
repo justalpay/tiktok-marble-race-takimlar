@@ -1931,7 +1931,7 @@ function resetToLobby() {
     centerBanner.classList.remove('hidden');
     document.getElementById('bannerBadge').textContent = 'HAZIRLIK AÇIK';
     document.getElementById('bannerMain').textContent = 'Takımını Destekle!';
-    document.getElementById('bannerSub').textContent = '❤️ 1000 Beğeni = Boost • 30 Jeton = Turbo • 100 Jeton = 2 Sn Dondur';
+    document.getElementById('bannerSub').textContent = '🏁 Takımını Yorumlarda ve Beğenilerle Destekle!';
   }
 }
 
@@ -2124,8 +2124,6 @@ function drawLobbyRing() {
   // Dış renkli kalın halka
   ctx.lineWidth = 14;
   ctx.strokeStyle = '#00E5FF';
-  ctx.shadowColor = '#00E5FF';
-  ctx.shadowBlur = 18;
   ctx.stroke();
 
   // Kesikli dış süs halkası
@@ -2136,7 +2134,6 @@ function drawLobbyRing() {
   ctx.arc(RING_CENTER_X, RING_CENTER_Y, RING_RADIUS + 14, 0, Math.PI * 2);
   ctx.stroke();
   ctx.setLineDash([]);
-  ctx.shadowBlur = 0;
 
   // Ortadaki Dönen Mor Çubuk
   const barLen = RING_RADIUS - 38;
@@ -2531,7 +2528,14 @@ function updateLikesHUD() {
   listEl.innerHTML = html;
 }
 
-function updateHUD() {
+let lastHudThrottleTime = 0;
+function updateHUD(force = false) {
+  const now = performance.now();
+  if (!force && (now - lastHudThrottleTime < 160)) {
+    return;
+  }
+  lastHudThrottleTime = now;
+
   updateLikesHUD();
   const sorted = [...marbles].sort((a, b) => b.y - a.y);
   const listEl = document.getElementById('liveLeaderboard');
@@ -2970,6 +2974,18 @@ function setupPanelControls() {
     });
   }
 
+  // TikTok Güvenli Mod / Hediye Şeridini Gizle-Göster
+  const toggleLegendBtn = document.getElementById('toggleLegendBtn');
+  if (toggleLegendBtn) {
+    toggleLegendBtn.addEventListener('click', () => {
+      const bar = document.querySelector('.gift-legend-bar');
+      if (bar) {
+        bar.classList.toggle('hidden');
+        toggleLegendBtn.textContent = bar.classList.contains('hidden') ? '👁️ Hediye Şeridini Göster' : '👁️ Hediye Şeridini Gizle';
+      }
+    });
+  }
+
   // Ses Sürgüsü
   const volSlider = document.getElementById('panelVolumeSlider');
   if (volSlider) {
@@ -3109,7 +3125,7 @@ if (isObsClient && socket) {
           centerBanner.classList.remove('hidden');
           document.getElementById('bannerBadge').textContent = 'HAZIRLIK AÇIK';
           document.getElementById('bannerMain').textContent = 'Takımını Destekle!';
-          document.getElementById('bannerSub').textContent = '❤️ 1000 Beğeni = Boost • 30 Jeton = Turbo • 100 Jeton = 2 Sn Dondur';
+          document.getElementById('bannerSub').textContent = '🏁 Takımını Yorumlarda ve Beğenilerle Destekle!';
         }
         sfx.stopAnthem(true);
       }
